@@ -228,6 +228,7 @@ d.line((t1,lines_heights[0]-8*box1_height,t1,lines_heights[4]+8*box1_height),fil
 box1_height=4*box1_height
 k=0
 p=0
+count = 1
 for i in range(0,len(lines_heights),5):
     if i%10==0 and i!=0:
         k=k+1
@@ -246,8 +247,12 @@ for i in range(0,len(lines_heights),5):
                     q2=q2+1
                 if lines_heights[i+4]+box1_height>height:
                     d.rectangle((q1,lines_heights[i]-box1_height,q2,height-3),outline="red")
+                    img.crop((q1, lines_heights[i] - box1_height, q2, height - 3)).save('images/' + str(count) + '.png',quality=95)
+                    count = count + 1
                 else:
                     d.rectangle((q1,lines_heights[i]-box1_height,q2,lines_heights[i+4]+box1_height),outline="red")
+                    img.crop((q1, lines_heights[i] - box1_height, q2, lines_heights[i+4]+box1_height)).save('images/' + str(count) + '.png',quality=95)
+                    count = count + 1
             #except:
                 #print("I had an error when trying the 'if' with the values",lines_heights[i]-8*box1_height,lines_heights[i+4]+8*box1_height,q2)
             q2=q2+1
